@@ -1,0 +1,1999 @@
+Day1 :21-Jan-2020
+=================
+
+
+
+ES6 Introduction
+================
+Setting Up the Development Environment
+ES6 Features
+let and const keyword
+Arrow functions
+‘this’ keyword in JavaScript
+Default Function parameters
+Rest and Spread Operators
+Template Literals
+Object and Array De-structuring 
+Modular Programming
+Default and Named Exports
+
+
+
+
+
+Software Installation
+======================
+
+Node JS download
+=================
+https://nodejs.org/dist/v14.15.4/node-v14.15.4-x64.msi
+
+Code Visual Studio
+====================
+https://code.visualstudio.com/download#
+
+
+
+
+Java Script :
+
+
+Node JS - Server side JS
+When you install Node JS will get Java Script run time enviroment and builtin JS libraries (package or module)
+           
+
+Module : Single JS File
+Package: Folder with one or more JS modules and package.json file (metdata aboth package)
+npm - Node Package Manager
+
+
+1.A module is a single JavaScript file that has some reasonable functionality.
+2.A package is a directory with one or more modules inside of it and a package. json file which has metadata about the package.
+3.Now it's very common for people to refer to a package as a module.
+
+
+npm vs npx
+===========
+Npm is a tool that use to install packages.
+Npx is a tool that use to execute packages. 
+Packages used by npm are installed globally you have to care about pollution for the long term. Packages used by npx are not installed globally so you have to carefree for the pollution for the long term.
+
+
+
+
+
+ES6 Features
+==============
+1.Const and Let
+==============
+
+Earlier, the var keyword was used to declare variables. This keyword had issues. So, const and let were introduced in ES6. They both have their own way of storing variables.
+
+The const keyword is used to store a variable whose value is not going to change, or whose value a developer does not wish to change. For many javascript developers, the const keyword is more powerful and useful than the var keyword. Whenever we try to change the value of a const variable, it will give a type error. But the value of an object declared using the const keyword can be changed. 
+
+The let keyword is very much similar to the var keyword. Unlike the const keyword, its value can be changed. But there is one key difference. It’s in scoping. This is why the let keyword is also considered better than the const keyword.
+
+
+
+2.Arrow Functions
+================
+The concept of arrows was first introduced in CoffeeScript and since then, the javascript developers who had worked with CoffeScript wanted the same concept in JavaScript. And finally, arrows were introduced in ES6. Arrow functions simply reduced the number of lines in a program.
+
+
+var a = 1;
+var b = 2;
+const sum = function(a,b){
+    return a+b;
+}
+
+sum()
+
+Now, let’s modify this using the arrow function.
+
+var a = 1;
+var b = 2;
+const sum = (a,b) = > a + b;
+sum()
+
+
+
+employee={
+id:101,
+name:'Pradeep',
+showDetails:function(){
+//var self=this;
+
+setTimeout(()=>{
+ console.log(this.id);
+ console.log(this.name);
+})
+}
+}
+
+
+
+
+
+3.Promises
+=========
+
+Promises have always been controversial. Some say promises are great while some say the work can be done generators, async, callbacks, etc.
+
+Let’s take simple delayed asynchronous execution
+
+
+setTimeout(function(){
+  console.log('Hello World!')
+}, 2000)
+
+
+Let’s modify it with ES6 promise.
+
+var wait =  new Promise(function(resolve, reject) {
+  setTimeout(resolve, 2000)
+}).then(function() {
+  console.log('Hello World!')
+})
+
+
+or just make it a little short using arrow functions.
+
+var wait =  new Promise((resolve, reject)=> {
+  setTimeout(resolve, 2000)
+}).then(()=> {
+  console.log('Hello World!')
+})
+
+
+
+4. Default Parameters
+======================
+And finally, javascript also had default parameters, similar to Ruby.
+
+var sum = function(a = 10, b = 20, c = 30){
+
+.......
+
+}
+
+
+5. Template Literals
+====================
+
+The way to output variables in a string is called interpolation or template literals. In ES5, we used to do something like this.
+
+ar firstname = 'Johny'
+var lastname = 'Bravo'
+var fullname = 'My name is ' + firstname + ' ' + lastname + '.'
+
+The third line is a bit weird. So ES6 introduced template literals.
+
+
+var firstname = 'Johny'
+var lastname = 'Bravo'
+var fullname = `My name is ${firstname} ${lastname}.`
+
+
+
+6.Multi-line Strings
+=====================
+
+
+var multiline = 'multi-line string multi-line string,\n\t'
+    + 'multi-line string multi-line string\n\t'
+    + 'multi-line string multi-line string,\n\t'
+    + 'multi-line string multi-line string\n\t'
+
+
+
+Every time we need to use \n and \t. This is irritating and time-consuming. ES6 simplified this.
+
+
+var multiline = `multi-line string multi-line string,
+				multi-line string multi-line string,
+				multi-line string multi-line string,
+				multi-line string multi-line string`
+
+
+
+7.Modules
+========
+This is one of the best features of ES6. Earlier, there was no native module support in javascript. Developers used to go for alternatives but ES6 introduced import and export operands. We can directly import and export in ES6.
+
+
+main.js
+
+export var name = 'Johny'
+export function demo() {
+    console.log("Hello World !!!")
+}
+
+
+And in the importing file, main.js, we can simply import from module.js file.
+
+
+import {name, demo} from './module.js'
+console.log(name) // 'Johny'
+
+
+
+import {name as n, demo as d} from './module.js'
+console.log(n,"    ",d) // 'Johny'
+
+
+// main.js
+let fname="Pradeep";
+export default fname;
+
+
+module.js
+=========
+
+import firstName from "./main.js"
+import {default as f} from "./main.js"
+
+
+8.ES6 classes
+==============
+If you have experience in programming languages such as Java and C++, you may no the importance of object-oriented programming. It was ES6 that introduced classes in javascript.
+
+
+class Dog{ 
+    constructor(name,breed){ 
+        this.name = name; 
+        this.breed = breed; 
+    } 
+} 
+  
+const dog1 = new Dog('Tommy','Labrador'); 
+const dog2 = new Dog('Scooby','Great Dane'); 
+  
+console.log(dog1.name); // Tommy
+console.log(dog2.name); // Scooby
+
+
+
+9.Rest Parameter
+=================
+Usually, when we call a parameterized function, the number of arguments we pass is the same as the number of arguments defined during the function declaration. But in javascript, we can do something like this.
+
+const sum = function(a,b){
+
+	return a+b
+}
+
+console.log(sum(1,2,3,4,5))
+
+
+
+Look at the last line where we call the function. We passed five values while the function accepts only two. But it will not throw any error. The function will return 3, as the sum of the first two arguments. But ES6 introduced the concept of rest parameters. Have a look at the following code.
+
+
+
+const sum = function(...args){ 
+    let sum = 0; 
+    for(let i of args){ 
+        sum+=i; 
+    } 
+    return sum; 
+} 
+
+console.log(sum(1,2,3,4,5))
+
+This time we did not define the number of arguments during the function declaration. Instead, we used, three dots followed by a word. The word specified can be used to iterate through the arguments passed to the function. The function will return 15.
+
+Conclusion
+
+So these were the features of ES6. If you work in javascript, you may know how efficient ES6 is. The next two versions, ES7 and ES8 also introduced some good features, but it was ES6 that really provided some excellent syntax benefits.
+
+
+
+
+
+ES6 Spread Operator
+======================
+
+
+ES6 introduced a new operator referred to as a spread operator, which consists of three dots (...). It allows an iterable to expand in places where more than zero arguments are expected. It gives us the privilege to obtain the parameters from an array.
+
+Spread operator syntax is similar to the rest parameter, but it is entirely opposite of it. Let's understand the syntax of the spread operator.
+
+
+Syntax
+var variablename1 = [...value];  
+The three dots (...) in the above syntax are the spread operator, which targets the entire values in the particular variable.
+
+
+let colors = ['Red', 'Yellow'];  
+let newColors = [...colors, 'Violet', 'Orange', 'Green'];  
+console.log(newColors);  
+
+
+Concatenating arrays
+
+Spread operator can also be used to concatenate two or more arrays.
+
+let colors = ['Red', 'Yellow'];  
+let newColors = [...colors, 'Violet', 'Orange', 'Green'];  
+console.log(newColors);  
+
+
+Copying an array
+We can also copy the instance of an array by using the spread operator.
+
+Example
+
+let colors = ['Red', 'Yellow'];  
+let newColors = [...colors];  
+console.log(newColors);  
+
+
+Let's see how the spread operator spreads the strings. The illustration for the same is given below.
+Example
+
+Here, we have constructed an array str from individual strings.
+
+let str = ['A', ...'EIO', 'U'];  
+console.log(str);  
+In the above example, we have applied the spread operator to the string 'EIO'. It spreads out each specific character of the 'EIO' string into individual characters.
+
+
+Destructuring
+==============
+
+Array Destructuring
+====================
+
+let introduction = ["Hello", "I" , "am", "Pradeep"];
+let greeting = introduction[0];
+let name = introduction[3];
+
+console.log(greeting);//"Hello"
+console.log(name);//"Pradeep"
+
+
+let introduction = ["Hello", "I" , "am", "Pradeep"];
+let [greeting, pronoun] = introduction;
+
+console.log(greeting);//"Hello"
+console.log(pronoun);//"I"
+
+
+let [greeting,,,name] = ["Hello", "I" , "am", "Pradeep"];
+
+console.log(greeting);//"Hello"
+console.log(name);//"Pradeep"
+
+Object Session
+==============
+
+let person = {name: "Sarah", country: "Nigeria", job: "Developer"};
+
+let name = person.name;
+let country = person.country;
+let job = person.job;
+
+console.log(name);//"Sarah"
+console.log(country);//"Nigeria"
+console.log(job);//Developer"
+
+
+let person = {name: "Sarah", country: "Nigeria", job: "Developer"};
+
+let {name, country, job} = person;
+
+console.log(name);//"Sarah"
+console.log(country);//"Nigeria"
+console.log(job);//Developer"
+
+React JS
+=========
+
+https://stackblitz.com/
+
+
+To create a React Application
+=============================
+Step 1 :Install Node JS
+           node -v
+           npm -v
+
+Step 2: To create a React App
+
+         npx create-react-app pvc-react-app
+
+Step 3. To run a React app
+
+        Go to pvc-react-app and use belo command
+
+        npm start
+
+
+Webpack
+=======
+1.Make a build
+2.JS & CSS minify
+3.Entry File
+
+
+Module Bundler : It is a tool that takes a pieces of JS and their dependencies and undles them into a single file usually for use in browser.
+
+Webpack Build and basic
+=======================
+webapp
+   dist
+    index.html
+   src
+     *.js
+     index.js
+    
+
+package.json
+   build:"webpack  --config custom.js"
+   start :"webpack-dev-server --mode development --open"
+
+npm init -y
+npm i webpack webpack-cli webpack-dev-server --save
+
+
+webpack.config.js
+==================
+const path=require("path");
+module.exports={
+mode:"development",
+entry:"./src/App.js",
+output:{
+path:path.resolve(__dirname,,'dist'),
+filename:'output.js'
+},
+devServer:{
+contentBase:path.join(__dirname,'dist'),
+compress:true,
+port:3500
+}
+}
+
+Day2   :22-Jan-2021
+=====
+
+React JS components
+=====================
+
+1.Components describe a part of user i/f
+2.They are reusable and can be nested inside other components
+3.Components are crucial part of any react application
+4.Components let you split the UI into independent, reusable pieces, and think about each piece in isolation. 
+      
+
+Two types
+=========
+1.Functional components (Stateless)
+2.Class components (Statful)
+
+
+Components and Props
+====================
+Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called “props”) and return React elements describing what should appear on the screen.
+
+
+
+
+Functional components
+======================
+Its a JS function that accepts input as a properties(props) optionally
+
+
+Class components
+======================
+1.Class components are basically ES6 clasess
+2.Class should extend Component class and should render method implemented
+3.Similar to Function components It optionally receives the input properties props and return html
+4.Maintain a private internal state (maintains the information of that component only)
+
+
+Difference :
+
+Functional & Class components
+===============================
+Use Functional components as much as possible
+Absence of this keyword
+Solution without using state 
+Mainly responsible for UI
+Stateless/Dumb/Presentational components
+
+Class
+=======
+More Feature ritch
+Maintain their private data
+Complex UI logic
+povide lifecycle hooks
+Stateful/Smart/Container
+ 
+
+React Component props and State
+==================================
+
+
+What is the difference between state and props?
+===============================================
+props (short for “properties”) and state are both plain JavaScript objects. 
+While both hold information that influences the output of render, they are different in one important way: 
+  
+  1.props get passed to the component (similar to function parameters)
+  2.state is managed within the component (similar to variables declared within a function).
+
+Here are some good resources for further reading on when to use props vs state:
+
+Props vs State
+ReactJS: Props vs. State
+
+
+Why is setState giving me the wrong value?
+==========================================
+In React, both this.props and this.state represent the rendered values, i.e. what’s currently on the screen.
+
+Calls to setState are asynchronous - don’t rely on this.state to reflect the new value immediately after calling setState. 
+Pass an updater function instead of an object if you need to compute values based on the current state (see below for details).
+
+Example of code that will not behave as expected:
+==================================================
+
+incrementCount() {
+  // Note: this will *not* work as intended.
+  this.setState({count: this.state.count + 1});
+}
+
+handleSomething() {
+  // Let's say `this.state.count` starts at 0.
+  this.incrementCount();
+  this.incrementCount();
+  this.incrementCount();
+  // When React re-renders the component, `this.state.count` will be 1, but you expected 3.
+
+  // This is because `incrementCount()` function above reads from `this.state.count`,
+  // but React doesn't update `this.state.count` until the component is re-rendered.
+  // So `incrementCount()` ends up reading `this.state.count` as 0 every time, and sets it to 1.
+
+  // The fix is described below!
+}
+
+See below for how to fix this problem.
+========================================
+
+How do I update state with values that depend on the current state?
+Pass a function instead of an object to setState to ensure the call always uses the most updated version of state (see below).
+
+What is the difference between passing an object or a function in setState?
+Passing an update function allows you to access the current state value inside the updater. Since setState calls are batched,
+this lets you chain updates and ensure they build on top of each other instead of conflicting:
+
+incrementCount() {
+  this.setState((state) => {
+    // Important: read `state` instead of `this.state` when updating.
+    return {count: state.count + 1}
+  });
+}
+
+handleSomething() {
+  // Let's say `this.state.count` starts at 0.
+  this.incrementCount();
+  this.incrementCount();
+  this.incrementCount();
+
+  // If you read `this.state.count` now, it would still be 0.
+  // But when React re-renders the component, it will be 3.
+}
+Learn more about setState
+
+When is setState asynchronous?
+Currently, setState is asynchronous inside event handlers.
+
+This ensures, for example, that if both Parent and Child call setState during a click event, Child isn’t re-rendered twice. 
+Instead, React “flushes” the state updates at the end of the browser event. This results in significant performance improvements in larger apps.
+
+This is an implementation detail so avoid relying on it directly. In the future versions, React will batch updates by default in more cases.
+
+Why doesn’t React update this.state synchronously?
+===================================================
+As explained in the previous section, React intentionally “waits” until all components call setState() in their event handlers before starting to re-render. 
+This boosts performance by avoiding unnecessary re-renders.
+
+However, you might still be wondering why React doesn’t just update this.state immediately without re-rendering.
+
+There are two main reasons:
+
+1.This would break the consistency between props and state, causing issues that are very hard to debug.
+2.This would make some of the new features we’re working on impossible to implement.
+
+
+
+The Component Lifecycle
+=======================
+Each component has several “lifecycle methods” that you can override to run code at particular times in the process. You can use this lifecycle diagram as a cheat sheet. In the list below, commonly used lifecycle methods are marked as bold. The rest of them exist for relatively rare use cases.
+
+1.Mounting :
+
+These methods are called in the following order when an instance of a component is being created and inserted into the DOM:
+
+    constructor,
+    static getDerivedStateFromProps,
+    render,
+    componentDidMount
+
+2.Updating :
+An update can be caused by changes to props or state. These methods are called in the following order when a component is being re-rendered:
+
+    static getDerivedStateFromProps,
+    shouldComponentUpdate,
+    render,
+    getSnapshotBeforeUpdate,
+    componentDidUpdate
+
+3.Unmounting:
+
+This method is called when a component is being removed from the DOM:
+
+          componentWillUnmount
+
+4.Error handling :
+   
+These methods are called when there is an error during rendering, in a lifecycle method, or in the constructor of any child component.
+
+    getDervicedStateFromError
+    componentDidCatch
+
+
+
+
+
+
+
+Controlled and Uncontrolled Forms
+==================================
+
+In most cases, we recommend using controlled components to implement forms. In a controlled component, form data is handled by a React component.
+The alternative is uncontrolled components, where form data is handled by the DOM itself.
+
+UnControlled Components
+========================
+To write an uncontrolled component, instead of writing an event handler for every state update, you can use a ref to get form values from the DOM.
+
+class NameForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.input = React.createRef();
+  }
+
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.input.current.value);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type="text" ref={this.input} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+
+Example2
+=========
+
+export default class StudentForm extends Component {
+constructor(props) {
+    super(props)
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.studentId = React.createRef();
+    this.studentName = React.createRef();
+    this.studentAddress = React.createRef();
+}
+
+handleSubmit(event) {
+
+    let details=`
+                 Id      :${this.studentId.current.value}
+                 Name    :${this.studentName.current.value}
+                 Address :${this.studentAddress.current.value}`;
+
+    alert('A Student details was submitted:\n' + details);
+    //event.preventDefault();
+  }
+
+  render() {
+        return (
+            <div className="text-danger">
+            <h2>Student UnControlled Form </h2>
+ 
+             <form  onSubmit={this.handleSubmit}>
+             <div className="form-group">
+             <label>Student Id</label>     
+             <input type="text"   defaultValue="123" ref={this.studentId}  class="form-control" id="id" placeholder="Enter Student Id" name="id"/>
+             </div>
+             
+             <div className="form-group">
+             <label>Student Name</label>     
+             <input type="text"  defaultValue="Pradeep Chinchole"  ref={this.studentName} class="form-control" id="name" placeholder="Enter Student Name" name="id"/>
+             </div>
+             
+             <div className="form-group">
+             <label>Student Address</label>     
+             <input type="text" defaultValue="Shivane Pune" ref={this.studentAddress}  class="form-control" id="address" placeholder="Enter Student Address" name="id"/>
+             </div>
+             <button type="submit" class="btn btn-primary">Submit</button>
+             </form>
+
+            </div>
+        )
+    }
+}
+
+
+
+
+
+Default Values
+==============
+In the React rendering lifecycle, the value attribute on form elements will override the value in the DOM.
+With an uncontrolled component, you often want React to specify the initial value, but leave subsequent updates uncontrolled. To handle this case, you can specify a defaultValue attribute instead of value. 
+Changing the value of defaultValue attribute after a component has mounted will not cause any update of the value in the DOM.
+
+render() {
+  return (
+    <form onSubmit={this.handleSubmit}>
+      <label>
+        Name:
+        <input
+          defaultValue="Bob"
+          type="text"
+          ref={this.input} />
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
+  );
+}
+
+Controlled Components
+=====================
+1.In a controlled component, the form data is handled by the state within the component. 
+2.The state within the component serves as “the single source of truth” for the input elements that are rendered by the component
+
+A controlled component is bound to a value, and its changes will be handled in code by using event-based callbacks. 
+Here, the input form element is handled by the react itself rather than the DOM. 
+In this, the mutable state is kept in the state property and will be updated only with setState() method.
+
+Controlled components have functions that govern the data passing into them on every onChange event occurs. 
+This data is then saved to state and updated with setState() method. 
+It makes component have better control over the form elements and data.
+
+
+class CourseForm extends Component {
+
+
+    constructor(props) {
+        super(props);
+        this.state = {
+                id:1234,
+                name:'React',
+                price:2000
+        };
+    
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+      }
+    
+
+      
+       handleSubmit(event) {
+        alert('Your Course Details: ' + this.state);
+        event.preventDefault();
+        }
+
+      handleInputChange(event) {
+        const target = event.target;
+        const name = target.name;
+        const value = target.value;
+    
+        console.log(target,name,value);
+
+        this.setState({
+          [event.target.name]: event.target.value
+        });
+      }
+
+
+    render() {
+        return (
+            <div className="text-primary">
+                <h2>Course Controlled Form </h2>
+ 
+ <form  onSubmit={this.handleSubmit}>
+ <div className="form-group">
+ <label>Course Id</label>     
+ <input type="text" value={this.state.id}  className="form-control" id="id" placeholder="Enter Course Id" name="id"  onChange={this.handleInputChange} />
+ </div>
+ 
+ <div className="form-group">
+ <label>Course Name</label>     
+ <input type="text"  value={this.state.name}   className="form-control" id="name" placeholder="Enter Course Name" onChange={this.handleInputChange}/>
+ </div>
+ 
+ <div className="form-group">
+ <label>Course Price </label>     
+ <input type="text" value={this.state.price}  className="form-control" id="price" placeholder="Enter Course Price" onChange={this.handleInputChange}/>
+ </div>
+ <button type="submit" className="btn btn-primary">Submit</button>
+ </form>
+    <pre>
+    Course Id :{this.state.id}  
+    Name      :{this.state.name}  
+    Price     :{this.state.price}  
+        
+    </pre>
+
+
+</div>
+        )
+    }
+}
+
+export default CourseForm
+
+Context API
+===========
+
+Context
+Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+
+In a typical React application, data is passed top-down (parent to child) via props, but this can be cumbersome for certain types of props 
+(e.g. locale preference, UI theme) that are required by many components within an application. Context provides a way to share values like these between components without having to explicitly pass a prop through every level of the tree.
+
+When to Use Context
+Before You Use Context
+API
+
+React.createContext
+Context.Provider
+Class.contextType
+Context.Consumer
+Context.displayName
+
+
+=============================
+State Lifting
+
+Parent.js
+============
+
+export class Parent extends Component {
+    
+state={
+        message:'Parent Message',
+        childMessage:''
+    }
+
+     getChildMessage=(childMessage)=>{
+        console.log("Clicked ...");
+
+           this.setState({
+    childMessage:childMessage
+     });
+
+}
+    render() {
+        return (
+            <div>
+                <h2>Passing the event handler as a props to Child Component</h2>
+                <h3> Parent Message : {this.state.message}</h3>
+                <h3> Child Message : {this.state.childMessage}</h3>
+    
+                
+                <Child  childChanged={this.getChildMessage}/>
+            </div>
+        )
+    }
+}
+
+Child.js
+=========
+
+export class Child extends Component {
+    state={
+        message:'Child Message:'
+        }
+}
+render() {
+        console.log(this.props)
+        let {childChanged}=this.props;
+        let {message}=this.state;
+        
+        return (
+            <div>
+                <h2>Child Message :{this.state.message}</h2>
+                <button onClick={()=>childChanged(message+" :"+Math.random()*10)}>Get Child Message</button>
+
+            </div>
+        )
+    }
+}
+
+========================
+Example 2 :State Lifting
+=========================
+https://reactjs.org/docs/lifting-state-up.html
+
+
+
+
+
+Higher-Order Components
+========================
+A higher-order component (HOC) is an advanced technique in React for reusing component logic. 
+HOCs are not part of the React API,They are a pattern that emerges from React’s compositional nature.
+
+Concretely, a higher-order component is a function that takes a component and returns a new component.
+
+  Example
+  =========
+  
+  const EnhancedComponent = higherOrderComponent(WrappedComponent);
+
+HoverCounter.js
+================
+
+class HoverCounter extends Component {
+    // constructor(props) {
+    //   super(props)
+    
+    //   this.state = {
+    //      count:0
+    //   };
+    // };
+    
+  
+    // incrementCount=()=>{
+    //     this.setState(prevState=>{
+    //           return {count:prevState.count+1}
+    //     })
+    // }
+
+   
+    render() {
+        let {count,incrementCount}=this.props;
+
+        return (
+            <div>
+              <h2 onMouseOver={incrementCount}>{this.props.name} Hoverd {count} times</h2>
+            </div>
+        )
+    }
+}
+
+export default UpdatedComponent(HoverCounter)
+
+ClickCounter.js
+================
+
+class ClickCounter extends Component {
+
+    // constructor(props) {
+    //   super(props)
+    
+    //   this.state = {
+    //      count:0
+    //   };
+    // };
+    
+    // incrementCount=()=>{
+    //     this.setState(prevState=>{
+    //           return {count:prevState.count+1}
+    //     })
+    // }
+
+     render() {
+
+        let {count,incrementCount}=this.props;
+
+         return (
+             <div>
+                 <button onClick={incrementCount}>{this.props.name} Clicked {count} times</button>
+             </div>
+         )
+     }
+}
+
+export default UpdatedComponent(ClickCounter)
+
+import React from 'react';
+
+const UpdatedComponent=OriginalComponent=>{
+class NewComponent extends React.Component{
+
+    constructor(props) {
+        super(props)
+      
+        this.state = {
+           count:0
+        };
+      };
+      
+    
+      incrementCount=()=>{
+          this.setState(prevState=>{
+                return {count:prevState.count+1}
+          })
+      }
+  
+ render(){
+    return <OriginalComponent   name="Pradeep"  count={this.state.count}  incrementCount={this.incrementCount}/>;
+}
+
+}
+return NewComponent
+}
+
+export default UpdatedComponent
+
+
+
+
+JSX
+====
+Javascript XML(JSX):Extension to JS Language syntax
+Write aXML like code for elements and components
+
+JSX tags have a tagname,attributes and children
+
+JSX is not a necessity to create a react application
+
+JSX makes yourr react code simpler and elegant
+
+JSX ultimately transpiles into JS which is understood by the browser
+
+Class->className
+for->htmlFor
+onclick->onClick
+tabindex->tabIndex
+
+JS Syntax
+==========
+
+export default function App(){
+return React.createElement("div",{id:'hello',className:"dummy"},React.createElement("h1",null,"Hello"));
+}
+
+
+JSX syntax
+===========
+export default function App() {
+  return (
+    <div>
+     Hello World!!!
+     </div>
+  );
+}
+
+}
+
+const Greet=()=> <h1>Hello Pradeep</h1>
+
+
+
+Axios
+======
+Axios is a promise-based HTTP client for the browser and Node.js. Axios makes it easy to send asynchronous HTTP requests to REST endpoints and perform CRUD operations.
+
+
+Features of Axios Library
+===========================
+1.Make XMLHttpRequests from the browser
+2.Make HTTP requests from node.js
+3.Supports the Promise API
+4.Intercept request and response
+5.Transform request and response data
+6.Cancel requests
+7.Automatic transforms for JSON data
+8.Client-side support for protecting against XSRF
+
+
+Axios also provides a set of shorthand methods for performing different HTTP requests:
+
+	axios.request(config)
+	axios.get(url[, config])
+	axios.delete(url[, config])
+	axios.head(url[, config])
+	axios.options(url[, config])
+	axios.post(url[, data[, config]])
+	axios.put(url[, data[, config]])
+	axios.patch(url[, data[, config]])
+
+Installing Axios Library
+=============
+Using npm  :  $ npm install axios
+
+
+
+
+Express JS   : Node JS Framework to build a rest ful web api
+============
+
+Develop a Restful Web API to perform CRUD operatiosn on below Employee array
+
+var employees=[
+ {id:1,name:"James",balance:220000,doj:new Date("July 17,2000")},
+ {id:2,name:"Abhinesh",balance:320000,doj:new Date("July 17,1996")},
+ {id:3,name:"Pradeep",balance:520000,doj:new Date("June 17,2016")},
+ {id:4,name:"Sunil",balance:720000,doj:new Date("April 17,2015")},
+ {id:5,name:"Anup",balance:820000,doj:new Date("July 17,2020")},
+ {id:6,name:"Rajendra",balance:520000,doj:new Date("August 17,2011")},
+];
+
+
+http://localhost:3000/api/employees       GET     ->GET all employees
+http://localhost:3000/api/employees/101   GET     ->GET employee with employee id 101
+http://localhost:3000/api/employees/101   PUT     ->UPDATE employee with id 101
+http://localhost:3000/api/employees/101   DELETE  ->DELETE employee with id 101
+http://localhost:3000/api/employees       POST    ->ADD employee
+
+
+
+Step 1 :Install express js
+ 
+Using npm  :  $ npm install express
+
+Step 2 :Install cors
+
+Using npm  :  $ npm install cors
+
+
+
+app.js
+=======
+const express=require("express");
+const cors=require("cors");
+
+
+//create a server 
+let app=express();
+
+
+//enable the parsing of json data
+app.use(express.json());
+app.use(express.urlencoded({extended:true}))
+app.use(cors()); //resource sharing
+
+
+
+var employees=[
+    {id:1,name:"James",salary:220000,doj:new Date("July 17,2000")},
+    {id:2,name:"Abhinesh",salary:320000,doj:new Date("July 17,1996")},
+    {id:3,name:"Pradeep",salary:520000,doj:new Date("June 17,2016")},
+    {id:4,name:"Sunil",salary:720000,doj:new Date("April 17,2015")},
+    {id:5,name:"Anup",salary:820000,doj:new Date("July 17,2020")},
+    {id:6,name:"Rajendra",salary:520000,doj:new Date("August 17,2011")},
+   ];
+   
+
+   //get all employees
+   app.get("/api/employees",function(request,response){
+       response.json(employees);
+   });
+
+
+  //get employee by id
+   app.get("/api/employees/:id",function(request,response){
+           var emp_id=parseInt(request.params.id);
+
+           var employee=employees.filter((e)=>e.id==emp_id)[0];
+          response.json(employee);
+   });
+   
+
+//delete employee by id
+app.delete("/api/employees/:id",function(request,response){
+    var emp_id=parseInt(request.params.id);
+
+    employees=employees.filter((e)=>e.id!=emp_id);
+   
+    response.json(employees);
+});
+
+
+//update employee by id
+app.put("/api/employees/:id",function(request,response){
+    var emp_id=parseInt(request.params.id);
+    var employee=request.body; //{id:1,name:"James",balance:220000,doj:new Date("July 17,2000")}
+
+    employees.map((e,i)=>{
+        if(e.id==emp_id)
+        employees[i]=employee;
+     });
+   
+    response.json(employees);
+});
+
+//add employee by id
+app.post("/api/employees",function(request,response){
+  
+    var employee=request.body; //{id:1,name:"James",balance:220000,doj:new Date("July 17,2000")}
+
+    employees.push(employee); 
+    
+    response.json(employees);
+});
+
+//start application port 3000
+app.listen(3000,function(){
+    console.log("Employee Servver started on port 3000");
+});
+
+
+To run app.js (Express application)
+======================================
+$ node app.js
+
+
+
+
+
+EmployeeService.js
+==================
+
+import axios from 'axios';
+
+const EMPLOYEE_API_BASE_URL = "http://localhost:8080/api/v1/employees";
+
+class EmployeeService {
+
+    getEmployees(){
+        return axios.get(EMPLOYEE_API_BASE_URL);
+    }
+
+    createEmployee(employee){
+        return axios.post(EMPLOYEE_API_BASE_URL, employee);
+    }
+
+    getEmployeeById(employeeId){
+        return axios.get(EMPLOYEE_API_BASE_URL + '/' + employeeId);
+    }
+
+    updateEmployee(employee, employeeId){
+        return axios.put(EMPLOYEE_API_BASE_URL + '/' + employeeId, employee);
+    }
+
+    deleteEmployee(employeeId){
+        return axios.delete(EMPLOYEE_API_BASE_URL + '/' + employeeId);
+    }
+}
+
+export default new EmployeeService()
+
+
+
+Using History
+=============
+Now that we have the user's info showing, we need to add the functionality to redirect to the /users route after deleting the user through the API. Since we need to redirect after the API returns a response, we can't just use Link to go back. We need to manually do it. React Router makes this easy by passing a history object into each route as a prop. This history object lets us manually control history of the browser. Since React Router is made to change what we see based off of the current URL, the history object can gives us fine-grained control of when and where certain pieces of the application are shown.
+
+
+handleDelete() {
+  const { match: { params }, history } = this.props;
+
+  axios.delete(`/api/users/${params.userId}`)
+    .then(() => {
+      history.push('/users');
+    });
+}
+
+
+
+Route Params :supported by get,put,post,delete
+============
+https://jsonplaceholder.typicode.com/users/1
+https://jsonplaceholder.typicode.com/posts/1
+https://jsonplaceholder.typicode.com/albums/1
+https://jsonplaceholder.typicode.com/photos/1
+https://jsonplaceholder.typicode.com/comments/1
+https://jsonplaceholder.typicode.com/todos/1
+
+To retrieve Route params
+=========================
+
+<Route path="/user/:userId" component={User} />
+
+
+Example
+========
+
+componentDidMount() {
+
+  const { match: { params } } = this.props;
+
+  axios.get(`https://jsonplaceholder.typicode.com/users/${params.userId}`)
+    .then(({ data: user }) => {
+      console.log('user', user);
+
+      this.setState({ user });
+    });
+}
+
+
+QueryParams :are supported by only get method
+===========
+https://jsonplaceholder.typicode.com/posts?userId=10
+https://jsonplaceholder.typicode.com/comments?postId=1
+https://jsonplaceholder.typicode.com/albums?userId=1
+https://jsonplaceholder.typicode.com/photos?albumId
+https://jsonplaceholder.typicode.com/todos?userId=1
+
+
+
+To retrieve Query Params
+=========================
+const query = new URLSearchParams(this.props.location.search);
+
+let userId=query.get("userId");
+let query = useQuery();
+let userId=query.get("userId");
+let postId=query.get("postId");
+let albumId=query.get("albumId");
+let commentId=query.get("commentId");
+
+
+React Context API
+==================
+
+Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+
+In a typical React application, data is passed top-down (parent to child) via props, but this can be cumbersome for certain types of props (e.g. locale preference, UI theme) that are required by many components within an application. Context provides a way to share values like these between components without having to explicitly pass a prop through every level of the tree.
+
+
+API
+=====
+React.createContext
+Context.Provider
+Class.contextType
+Context.Consumer
+Context.displayName
+
+
+When to Use Context
+===================
+Context is designed to share data that can be considered “global” for a tree of React components, such as the current authenticated user, theme, or preferred language. For example, in the code below we manually thread through a “theme” prop in order to style the Button component:
+
+userContext.js
+==============
+import React from 'react';
+
+//create a context
+const UserContext = React.createContext();
+
+
+//create a provider
+const UserProvider=UserContext.Provider;
+
+//create a consumer
+const UserConsumer=UserContext.Consumer;
+
+export {UserProvider,UserConsumer}
+
+
+provider.js
+==========
+import { UserProvider } from './userContext';
+
+<UserProvider value="Pradeep">
+<Country/>
+</UserProvider> }
+
+
+consumer.js
+==========
+import { UserConsumer } from './userContext';
+
+ <UserConsumer>
+  {
+   username=>{
+              return <h1> Hello  {username} !!!! </h1>
+  }
+  }
+</UserConsumer>
+
+
+
+
+Pure Components in React
+=========================
+1.Pure Components in React are the components which do not re-renders when the value of state and props has been updated with the same values. 
+
+2.If the value of the previous state or props and the new state or props is the same, the component is not re-rendered. 
+
+3.Pure Components restricts the re-rendering ensuring the higher performance of the Component
+Features of React Pure Components
+
+4.Prevents re-rendering of Component if props or state is the same
+Takes care of “shouldComponentUpdate” implicitly
+
+5.State and Props are Shallow Compared
+Pure Components are more performant in certain cases
+
+6.React provides the PureComponent base class for these class components. 
+
+7.Class components that extend the React.PureComponent class are treated as pure components.
+
+8.React Components re-renders in the following scenarios:
+          1.“setState” is called in Component
+          2.“props” values are updated
+          3.this.forceUpdate() is called
+9.Pure Components are introduced for performance enhancement. 
+
+
+The key takeaway here is:
+=========================
+
+
+Use Pure Components, in the case when the props and state changes are made to primitive type variable, state and props changes to reference variable may lead to incorrect results and inconsistent rendering
+
+a=100;
+b=100;
+
+a==b  // true
+
+a="Ram";
+b="Ram";
+
+a==b;//true
+
+
+p1={name:'Ram',age:23};
+p2={name:'Ram',age:23};
+
+
+p1==p2;  //False
+
+let p3=p1;
+p1==p3;//True
+
+
+
+
+
+
+
+Changing Default Port 3000 in create-react-app
+==============================================
+To summarize, we have three approaches to accomplish this:
+
+1.Set an environment variable named "PORT"
+    
+      For windows : SET PORT=8000
+
+2.Modify the "start" key under "scripts" part of package. json.
+  "start": "set PORT=9999 && react-scripts start"
+
+3.Create a .env file in root folder of react project and put the PORT configuration in it.
+
+.env
+   PORT=8000
+
+
+
+React Hooks
+============
+1.Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class.
+
+https://reactjs.org/docs/hooks-overview.html
+
+
+What is a Hook?
+================
+Hooks are functions that let you “hook into” React state and lifecycle features from function components. Hooks don’t work inside classes — they let you use React without classes.
+
+
+?? State Hook
+==============
+
+1.useState returns a pair: the current state value and a function that lets you update it. You can call this function from an event handler or somewhere else.
+
+2.It’s similar to this.setState in a class, except it doesn’t merge the old and new state together. (We’ll show an example comparing useState to this.state in Using the State Hook.)
+
+
+import React, { useState } from 'react';
+
+function Example() {
+  // Declare a new state variable, which we'll call "count"
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+
+
+?? Effect Hook
+================
+
+The Effect Hook, useEffect, adds the ability to perform side effects from a function component. It serves the same purpose as componentDidMount, componentDidUpdate, and componentWillUnmount in React classes, but unified into a single API. (We’ll show examples comparing useEffect to these methods in Using the Effect Hook.)
+
+import React, { useState, useEffect } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() => {
+    // Update the document title using the browser API
+    document.title = `You clicked ${count} times`;
+  });
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+
+
+Rules of Hooks
+====================
+Hooks are JavaScript functions, but they impose two additional rules:
+
+1.Only call Hooks at the top level.
+2.Don’t call Hooks inside loops, conditions, or nested functions.
+3.Only call Hooks from React function components. 
+Don’t call Hooks from regular JavaScript functions. 
+
+
+
+
+
+
+
+React Strict Mode
+==================
+1.Strict Mode is a tool for hilighting potential problems in an application
+2.Strict Mode doesnot render any visible UI.It activates additional checks and warnings for its decendants.
+3.Strict mode checks are are run in development only they donot impact the production build
+4.StrictMode currently helps with
+    1.Identifying components with unsafe lifecycles
+    2.Deprecated Context API
+
+
+Error Boundry
+=============
+A JavaScript error in a part of the UI shouldn’t break the whole app. To solve this problem for React users, React 16 introduces a new concept of an “error boundary”.
+
+Error boundaries are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
+
+
+Note
+=====
+
+=>Error boundaries do not catch errors for:
+=>Event handlers (learn more)
+=>Asynchronous code (e.g. setTimeout or requestAnimationFrame callbacks)
+=>Server side rendering
+=>Errors thrown in the error boundary itself (rather than its children)
+
+1.A class component that implements either one or both lifecycle methods
+       getDerivedStateFromError or componentDidCatch 
+becomes an error boundry
+
+
+2.The static method getDerivedStateFromError is used to render a fallback UI after an error is thrown and the componentDidcatch method is used to log the error information.
+
+
+Error boundries are the react components that catch JavaScript error in their child component tree,log those errors and display a fall-back UI
+
+Ex.
+
+ErrorBounDry.js
+==================
+import React from 'react';
+
+class ErrorBoundary extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = { hasError: false };
+    }
+  
+    static getDerivedStateFromError(error) {
+      // Update state so the next render will show the fallback UI.
+      return { hasError: true };
+    }
+  
+    componentDidCatch(error, errorInfo) {
+      // You can also log the error to an error reporting service
+     console.log("Component DidCatch  ",error);
+    }
+  
+    render() {
+      if (this.state.hasError) {
+        // You can render any custom fallback UI
+        return <h1>Something went wrong.</h1>;
+      }
+  
+      return this.props.children; 
+    }
+  }
+
+  export default ErrorBoundary
+
+
+Use Error Boundry
+==================
+<ErrorBoundary>
+<Greeting  name="Pradeep"/>
+<Greeting  name="Sachin"/>
+<Greeting  name="Mohan"/>
+<Greeting  name="Sunil"/>
+</ErrorBoundry>
+
+
+Why use Redux?
+==================
+When using Redux with React, states will no longer need to be lifted up. This makes it easier for you to trace which action causes any change.
+
+As you can see in the example above, the component does not need to provide any state or method for its children components to share data among themselves. Everything is handled by Redux. This greatly simplifies the app and makes it easier to maintain.
+
+This is the primary reason why you should use Redux, but it’s not the only benefit. Take a look at the list below for a summary of what you stand to gain by using Redux for state management.
+
+=>Redux makes the state predictable
+=>Redux is maintainable
+=>Debugging is easy in Redux
+=>Performance Benefits
+=>Ease of testing
+=>State persistence
+=>Server-side rendering
+
+
+
+React & Redux
+===========
+React :It is the JS UI libraray used to build the user interface
+
+Redux :It is the state management library in a predictable way in Java Script applications.
+
+React Redux is the official Redux UI binding library for React.
+
+Redux is a predictable state container for JS Applications.
+
+Redux can be used with React Angular,View js.
+
+react-redux - bindings between redux and react, that creates containers (smart components) that listen to the store's state changes, prepare the props for and rerender the presentational (dumb) components
+
+Three principles of Redux
+===========================
+1.Store
+2.action
+3.Reducer
+
+Store
+======
+1.Holds app state value
+2.Allow access to state via getState()
+3.Allow state to be updated via dispatch(action)
+4.Register listener via subscribe(listener)
+5.Handles unregistering of listeners via the function returned by subscribe(listener)
+ 
+spread operator: to clone state value
+
+
+The Redux store brings together the state, actions, and reducers that make up your app. The store has several responsibilities:
+
+=>Holds the current application state inside
+=>Allows access to the current state via store.getState();
+=>Allows state to be updated via store.dispatch(action);
+=>Registers listener callbacks via store.subscribe(listener);
+=>Handles unregistering of listeners via the unsubscribe function returned by store.subscribe(listener).
+
+
+Reducers
+==========
+Reducers are functions that take the current state and an action as arguments, and return a new state result.
+ In other words, (state, action) => newState.
+
+
+
+Action  :What type of action you want to perform on state
+=======
+               add
+               delete
+               update
+               get  
+
+
+Step 1: create a folder redux-demo
+
+Step 2 :Inside redux-demo create a  package.json
+
+        npm init -y 
+
+Step 3:Inside redux-demo install redux library
+
+        npm i redux
+
+
+Step 4: create a index.js and write below code
+
+index.js
+==========
+//import the redux
+let redux=require("redux");
+
+
+
+//create action
+const Buy_Book='Buy_Book';
+
+const action={
+    type:Buy_Book,
+    info:'Buy Book from store reduces the nunmberOfBooks by 1'
+}
+
+
+//initialState
+const initialState={
+    numberOfBooks:10
+}
+
+//dispatcher
+function buyBook(){
+    return action;
+}
+
+
+//Reducer tkaes 2 params : (prevState,action)=> newState
+const Reducer=(state=initialState,action)=>{
+
+    switch(action.type){
+
+        case 'Buy_Book':{
+            return {...state,numberOfBooks:state.numberOfBooks-1}
+        }
+
+        default: return state;
+
+    }//switch
+}//Reducer
+
+
+//create store
+const bookStore=redux.createStore(Reducer);
+console.log("Initial State i.e Number of books: ",bookStore.getState());
+const unsubscribe=bookStore.subscribe(()=>{console.log("Updated State :Available  Number of Books :",bookStore.getState())});
+//Purchase the book
+bookStore.dispatch(buyBook());
+bookStore.dispatch(buyBook());
+bookStore.dispatch(buyBook());
+bookStore.dispatch(buyBook());
+bookStore.dispatch(buyBook());
+
+
+
+
+unsubscribe();
+
+
+Step 5: run the index.js file
+
+        node index.js
+
+
+
+Redux vs Context API: Comparisons
+=================================
+Implementation
+===============
+
+=>Context API is easy to is use as it has a short learning curve. 
+=>It requires less code, and because there's no need of extra libraries, bundle sizes are reduced.
+
+=>Redux on the other hand requires adding more libraries to the application bundle.
+=>The syntax is complex and extensive creating unnecessary work and complexity.
+=> However, it's still a great alternative regarding prop drilling.
+
+Rendering
+=========
+Context API prompts a re-render on each update of the state and re-renders all components regardless. Redux however, only re-renders the updated components.
+This can be monitored on the console as there's a log in each component.
+
+
+Redux vs Context API: Conclusions
+==================================
+Context API: Resourceful and ideal for small applications where state changes are minimal
+
+Redux: Perfect for larger applications where there are high-frequency state updates
+
+
+
+
+https://www.npmjs.com/package/json-server
+==========================================
+
+Get a full fake REST API with zero coding 
+
+Step 1  Create a folder json-server-demo
+=======
+
+
+Step 2  Create a package.json in json-server-demo
+=======
+
+       npm init -y
+
+Step 3: Install JSON Server in json-server-demo
+=======
+
+        npm install -g json-server  //prefered
+       
+        npm install json-server
+ 
+        set path=C:\Program Files\nodejs;.\node_modules\.bin;
+
+Step 4:start Json server 
+=======================
+        
+      json-server db.json     //default port 3000
+
+      json-server db.json --port=2121  //customize the port
+
+      It will create adb.json with dummy data
+
+
+
+
+
+To gernate production build
+============================
+
+npm run build
+
+It will minify all JS into one and genrate production build in the folder named build.
+
+Starting point of Execution is index.html
+
+
+
+
+
+day3
+====
+1.Event Hanndling
+2.setState method in detail
+3.Form handling
+     
+     Controlled Components
+     UnControlled Componenets 
+
+4.Get the dynmaic data from backend
+           1.fetch -JS function
+           2.axios -JS libarary
+
+ https://jsonplaceholder.typicode.com/
+
+5.Lifting state up
+      
+          
+onclick     =>onClick
+onmouseover => onMouseover
+onchange    =>onChange
+
+this.incrementHandler=this.incrementHandler.bind(this);
+
+
+
+
+
+this.setState({count:this.state.count+1})
+
+
+this.setState((state)=>{ return {count:state.count+1}})
+
+
+
+
+
+Course Form  -> UnControlled Comonent
+
+    Id
+    Name
+    Price
+
+Student Form -> Controlled Component
+    Id
+    Name
+    Marks
+
+
+props
+this.props
+
+Day4
+====
+1.Handling Route Params and Query Params
+2.Default React Applicaation Port change
+3.Context API
+4.High Order Component-Decorator Pattern
+5.Pure Components
+
+
+
+Day5
+====
+1.Error Boundry
+2.<React.StrictMode> : 
+3.Employee CRUD Application with axios and Express JS as a backend application
+4.React Hooks :useState and useHooks (Functional Components) 16.8
+
+
+
+
+
+
+Day6
+====
+1.Redux Introduction
+2.Redux Example
+3.React Redux Application
+4.React Developer Tool for debugging
+5.State Lifting -One more Example
+6.React Application : production build
+
+
+
+
+
+
+Front End : 3000
+cors--
+Backend   :8080
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
