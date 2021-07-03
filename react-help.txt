@@ -865,6 +865,60 @@ Context.Consumer
 Context.displayName
 
 
+userContext.js
+================
+
+import React from 'react';
+// Context lets us pass a value deep into the component tree
+// without explicitly threading it through every component.
+
+
+// Create a context for the current user (with "Pradeep Chinchole" as the default).
+const UserContext = React.createContext("Pradeep Chinchole");
+
+
+//create a provider
+const UserProvider=UserContext.Provider;
+
+//create a consumer
+const UserConsumer=UserContext.Consumer;
+
+
+export {UserProvider,UserConsumer}
+
+
+
+Context.js
+===========
+import React, { Component } from 'react'
+import { UserProvider,UserConsumer } from './userContext'
+export default class Context extends Component {
+  render() {
+    return (
+      <div>
+        <h2>Context API with default value</h2>
+
+     <b> 
+        <UserConsumer>
+          {x=>x} 
+        </UserConsumer>
+</b>
+<hr/>
+<h2>Context API with custom value</h2>
+<i>
+<UserProvider value="Ram sirsath">
+<UserConsumer>
+    {user=>user}
+</UserConsumer>
+</UserProvider>
+</i>
+      </div>
+    )
+  }
+}
+
+
+
 =============================
 State Lifting
 
@@ -1876,8 +1930,8 @@ day3
 2.setState method in detail
 3.Form handling
      
-     Controlled Components
-     UnControlled Componenets 
+    1. Controlled Components
+    2. UnControlled Componenets 
 
 4.Get the dynmaic data from backend
            1.fetch -JS function
@@ -1902,8 +1956,6 @@ this.setState({count:this.state.count+1})
 
 
 this.setState((state)=>{ return {count:state.count+1}})
-
-
 
 
 
