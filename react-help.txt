@@ -652,6 +652,7 @@ Controlled and Uncontrolled Forms
 ==================================
 
 In most cases, we recommend using controlled components to implement forms. In a controlled component, form data is handled by a React component.
+
 The alternative is uncontrolled components, where form data is handled by the DOM itself.
 
 UnControlled Components
@@ -687,12 +688,17 @@ Example2
 =========
 
 export default class StudentForm extends Component {
+
+
 constructor(props) {
     super(props)
+
     this.handleSubmit = this.handleSubmit.bind(this);
+
     this.studentId = React.createRef();
     this.studentName = React.createRef();
     this.studentAddress = React.createRef();
+
 }
 
 handleSubmit(event) {
@@ -1460,6 +1466,107 @@ import { UserConsumer } from './userContext';
 
 
 
+High Order Component
+=========================
+
+HoverCounter.js
+==================
+import React, { Component } from 'react';
+
+class HoverCounter extends Component {
+   
+
+constructor(props){
+    super(props);
+    this.state=
+    {count:0}
+
+}
+
+incrementCount=()=>{
+this.setState(prevState=>{
+    return {count:prevState.count+1}
+         })
+}
+
+    render() {
+        return (
+            <div className="text-info">
+            <h2>Hover Counter Example </h2>
+             <br/><br/>
+             <font size="5" color="brown"   onMouseOver={this.incrementCount}> Overed  {this.state.count} times  </font>
+             </div>
+        );
+    }
+}
+export default HoverCounter;
+
+
+ClinckCounter.js
+================
+import React, { Component } from 'react';
+
+class ClickCounter extends Component {
+   
+
+constructor(props){
+    super(props);
+    this.state=
+    {count:0}
+
+}
+
+incrementCount=()=>{
+this.setState(prevState=>{
+    return {count:prevState.count+1}
+         })
+}
+
+    render() {
+        return (
+            <div className="text-info">
+            <h2>Click Counter Example </h2>
+             <br/><br/>
+               <button   class="btn btn-info"  onClick={this.incrementCount}> Button Clicked  {this.state.count} times </button>
+             </div>
+        );
+    }
+}
+export default ClickCounter;
+
+
+
+UpdatedComponent.js
+=====================
+import React, { Component } from 'react';
+
+const UpdatedComponent=OriginalComponent=>{
+
+class NewComponent extends Component{
+
+    constructor(props){
+        super(props);
+        this.state=
+        {count:0}
+      }
+
+
+      incrementCount=()=>{
+        this.setState(prevState=>{
+            return {count:prevState.count+1}
+                 })
+        }
+ 
+render(){
+    return <OriginalComponent  name="Pradeep Chinchole"  count={this.state.count}  incrementCount={this.incrementCount} />
+}
+}
+return NewComponent
+}
+
+export default UpdatedComponent;
+
+
 
 Pure Components in React
 =========================
@@ -1490,7 +1597,6 @@ Pure Components are more performant in certain cases
 The key takeaway here is:
 =========================
 
-
 Use Pure Components, in the case when the props and state changes are made to primitive type variable, state and props changes to reference variable may lead to incorrect results and inconsistent rendering
 
 a=100;
@@ -1512,8 +1618,6 @@ p1==p2;  //False
 
 let p3=p1;
 p1==p3;//True
-
-
 
 
 
@@ -1836,9 +1940,6 @@ bookStore.dispatch(buyBook());
 bookStore.dispatch(buyBook());
 bookStore.dispatch(buyBook());
 
-
-
-
 unsubscribe();
 
 
@@ -1910,7 +2011,6 @@ Step 4:start Json server
 
 
 
-
 To gernate production build
 ============================
 
@@ -1947,9 +2047,6 @@ onmouseover => onMouseover
 onchange    =>onChange
 
 this.incrementHandler=this.incrementHandler.bind(this);
-
-
-
 
 
 this.setState({count:this.state.count+1})
