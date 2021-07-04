@@ -1,0 +1,10 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "LG",
+      "price": "12000.44",
+      "location": "Pune"
+    }
+  ]
+}
