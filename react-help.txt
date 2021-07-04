@@ -1,8 +1,5 @@
 Day1 :21-Jan-2020
 =================
-
-
-
 ES6 Introduction
 ================
 Setting Up the Development Environment
@@ -17,13 +14,8 @@ Object and Array De-structuring
 Modular Programming
 Default and Named Exports
 
-
-
-
-
 Software Installation
 ======================
-
 Node JS download
 =================
 https://nodejs.org/dist/v14.15.4/node-v14.15.4-x64.msi
@@ -1915,6 +1907,7 @@ function buyBook(){
 
 
 //Reducer tkaes 2 params : (prevState,action)=> newState
+
 const Reducer=(state=initialState,action)=>{
 
     switch(action.type){
@@ -1932,7 +1925,10 @@ const Reducer=(state=initialState,action)=>{
 //create store
 const bookStore=redux.createStore(Reducer);
 console.log("Initial State i.e Number of books: ",bookStore.getState());
+
 const unsubscribe=bookStore.subscribe(()=>{console.log("Updated State :Available  Number of Books :",bookStore.getState())});
+
+
 //Purchase the book
 bookStore.dispatch(buyBook());
 bookStore.dispatch(buyBook());
@@ -1975,11 +1971,10 @@ Redux: Perfect for larger applications where there are high-frequency state upda
 
 
 
-
 https://www.npmjs.com/package/json-server
 ==========================================
 
-Get a full fake REST API with zero coding 
+Get a full fake REST API with zero coding for Products 
 
 Step 1  Create a folder json-server-demo
 =======
@@ -2006,7 +2001,7 @@ Step 4:start Json server
 
       json-server db.json --port=2121  //customize the port
 
-      It will create adb.json with dummy data
+      It will create db.json with dummy data
 
 
 
