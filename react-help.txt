@@ -460,13 +460,12 @@ React JS components
 Two types
 =========
 1.Functional components (Stateless)
-2.Class components (Statful)
+2.Class components (Stateful)
 
 
 Components and Props
 ====================
 Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called “props”) and return React elements describing what should appear on the screen.
-
 
 
 
@@ -504,7 +503,6 @@ Stateful/Smart/Container
 
 React Component props and State
 ==================================
-
 
 What is the difference between state and props?
 ===============================================
@@ -1704,12 +1702,7 @@ Hooks are JavaScript functions, but they impose two additional rules:
 1.Only call Hooks at the top level.
 2.Don’t call Hooks inside loops, conditions, or nested functions.
 3.Only call Hooks from React function components. 
-Don’t call Hooks from regular JavaScript functions. 
-
-
-
-
-
+4.Don’t call Hooks from regular JavaScript functions. 
 
 
 React Strict Mode
@@ -2012,10 +2005,7 @@ To gernate production build
 npm run build
 
 It will minify all JS into one and genrate production build in the folder named build.
-
 Starting point of Execution is index.html
-
-
 
 
 
@@ -2075,17 +2065,12 @@ Day4
 5.Pure Components
 
 
-
 Day5
 ====
 1.Error Boundry
 2.<React.StrictMode> : 
 3.Employee CRUD Application with axios and Express JS as a backend application
 4.React Hooks :useState and useHooks (Functional Components) 16.8
-
-
-
-
 
 
 Day6
@@ -2109,6 +2094,93 @@ Backend   :8080
 
 
 
+Applying CSS     :https://www.w3schools.com/react/react_css.asp
+==================
+
+Inline CSS
+==========
+
+class MyHeader extends React.Component {
+  render() {
+    return (
+      <div>
+      <h1 style={{color: "red"}}>Hello Style!</h1>
+      <p>Add a little style!</p>
+      </div>
+    );
+  }
+}
+
+
+
+class MyHeader extends React.Component {
+  render() {
+    return (
+      <div>
+      <h1 style={{backgroundColor: "lightblue"}}>Hello Style!</h1>
+      <p>Add a little style!</p>
+      </div>
+    );
+  }
+}
+
+
+
+
+
+class MyHeader extends React.Component {
+  render() {
+    const mystyle = {
+      color: "white",
+      backgroundColor: "DodgerBlue",
+      padding: "10px",
+      fontFamily: "Arial"
+    };
+    return (
+      <div>
+      <h1 style={mystyle}>Hello Style!</h1>
+      <p>Add a little style!</p>
+      </div>
+    );
+  }
+}
+ 
+ 
+ 
+
+ App.css:
+ ========
+Create a new file called "App.css" and insert some CSS code in it:
+
+body {
+  background-color: #282c34;
+  color: white;
+  padding: 40px;
+  font-family: Arial;
+  text-align: center;
+}
+ 
+ 
+ 
+ 
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './App.css';
+
+
+class MyHeader extends React.Component {
+  render() {
+    return (
+      <div>
+      <h1>Hello Style!</h1>
+      <p>Add a little style!.</p>
+      </div>
+    );
+   
+}
+}
+
+ReactDOM.render(<MyHeader />, document.getElementById('root'));
 
 
 
@@ -2116,14 +2188,12 @@ Backend   :8080
 
 
 
+React Developer Tools
+======================
+https://www.youtube.com/watch?v=t2nDXhXgn9Y
 
 
-
-
-
-
-
-
+https://www.youtube.com/watch?v=EG0LhIfmUSo
 
 
 
